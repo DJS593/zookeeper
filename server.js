@@ -1,4 +1,5 @@
 const express = require('express');
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 const { animals } = require('./data/animals');
@@ -67,6 +68,6 @@ app.get('/api/animals', (req, res) => {
 
 
 // adding listen() to the bottom of file
-app.listen(8000, () => {
-  console.log(`API server now on port 8000!`);
+app.listen(PORT, () => {
+  console.log(`API server now on port ${PORT}!`);
 });
