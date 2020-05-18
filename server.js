@@ -57,6 +57,11 @@ function filterByQuery(query, animalsArray) {
 }
 
 
+function findById(id, animalsArray) {
+  const result = animalsArray.filter(animal => animal.id === id)[0];
+  return result;
+}
+
 
 //the app() method requires two arguments; 1. a string 2. callback function taht will execture every time that route is accessed with a GET request
 
@@ -67,6 +72,19 @@ app.get('/api/animals', (req, res) => {
   }
   res.json(results);
 });
+
+
+app.get('/api/animals/:id', (req, res) => {
+  const result = findById(req.params.id, animals);
+  if (result) {
+    res.json(result);
+  } else {
+    res.sendStatus(404);
+    // changed from send to sendStatus due to prompt on the command line; res.send is deprecated and they suggest res.sendStatus(status)
+  }
+});
+
+
 
 
 // adding listen() to the bottom of file
